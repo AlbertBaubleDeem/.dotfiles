@@ -20,6 +20,7 @@ set hlsearch
 " Set colorscheme to avoid unreadable WSL colors - Windows specific
 colorscheme lunaperche	
 set background=dark
+hi Normal guibg=NONE ctermbg=NONE
 
 " Adjust underscore handling in Markdown
 augroup markdown_underscore_fix
