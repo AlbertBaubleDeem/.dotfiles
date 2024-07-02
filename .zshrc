@@ -47,7 +47,7 @@ zstyle ':vcs_info:git:*' check-for-staged-changes true
 RPROMPT='%(?.. %? %B%F{red}⨯%f%b)%(1j. %j %B%F{yellow}⚙%f%b.)${vcs_info_msg_0_}'
 
 # Fixing PROMPT to start on a new line - macOS compatible
-PROMPT=$'%F{green}┌──(%B%F{22}%n@%m%f%b%F{green})─[%f%F{15}%(6~.%-1~/…/%4~.%5~)%f%F{green}]\n%F{green}└─%f%B%F{22}%(#.%F{red}#.%F{22}$)%f%b '
+PROMPT=$'%F{blue}┌──(%B%F{12}%n@%m%f%b%F{blue})─[%f%F{15}%(6~.%-1~/…/%4~.%5~)%f%F{blue}]\n%F{blue}└─%f%B%F{22}%(#.%F{red}#.%F{blue}$)%f%b '
 
 # My personal PATH
 # export PATH = /usr/local/Cellar/git/2.37.1/bin/git:$PATH

@@ -14,6 +14,21 @@ set nocompatible
 " Turn on syntax highlighting.
 syntax on
 
+" Set highlight search
+set hlsearch
+
+" Set colorscheme to avoid unreadable WSL colors - Windows specific
+colorscheme lunaperche	
+set background=dark
+
+" Adjust underscore handling in Markdown
+augroup markdown_underscore_fix
+    autocmd!
+    autocmd FileType markdown syn clear markdownError
+    autocmd FileType markdown syn match markdownError "\v([^_]|^)\zs_\ze([^_]|$)" containedin=ALL
+    autocmd FileType markdown hi markdownError ctermbg=NONE ctermfg=NONE
+augroup END
+
 " Disable the default Vim startup message.
 set shortmess+=I
 
@@ -78,6 +93,15 @@ inoremap <Left>  <ESC>:echoe "Use h"<CR>
 inoremap <Right> <ESC>:echoe "Use l"<CR>
 inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
+
+" WSL yank support
+let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
+if executable(s:clip)
+    augroup WSLYank
+        autocmd!
+        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+    augroup END
+endif
 
 " PLUGINS
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
