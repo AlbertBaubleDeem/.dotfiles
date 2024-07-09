@@ -11,8 +11,6 @@
 " `vim -u foo`).
 set nocompatible
 
-" Turn on syntax highlighting.
-syntax on
 
 " Set highlight search
 set hlsearch
@@ -104,6 +102,9 @@ if executable(s:clip)
     augroup END
 endif
 
+" Custom command to remove HTML tags
+command! RemoveHtmlTags %s/<[^>]*>//g
+
 " PLUGINS
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 
@@ -124,7 +125,13 @@ nmap cW cE
 "description: rst note taking
 Plug 'rykka/riv.vim'
 
+"vim csv viewer plugin
+Plug 'chrisbra/csv.vim'
+
 call plug#end()
+
+" Turn on syntax highlighting.
+syntax on
 
 " Set riv.vim settings
 let g:riv_fuzzy_help = 0
