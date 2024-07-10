@@ -16,17 +16,9 @@ set nocompatible
 set hlsearch
 
 " Set colorscheme to avoid unreadable WSL colors - Windows specific
-colorscheme lunaperche	
+colorscheme lunaperche
 set background=dark
 hi Normal guibg=NONE ctermbg=NONE
-
-" Adjust underscore handling in Markdown
-augroup markdown_underscore_fix
-    autocmd!
-    autocmd FileType markdown syn clear markdownError
-    autocmd FileType markdown syn match markdownError "\v([^_]|^)\zs_\ze([^_]|$)" containedin=ALL
-    autocmd FileType markdown hi markdownError ctermbg=NONE ctermfg=NONE
-augroup END
 
 " Disable the default Vim startup message.
 set shortmess+=I
@@ -132,6 +124,14 @@ call plug#end()
 
 " Turn on syntax highlighting.
 syntax on
+
+" Adjust underscore handling in Markdown
+augroup markdown_underscore_fix
+    autocmd!
+    autocmd FileType markdown syn clear markdownError
+    autocmd FileType markdown syn match markdownError "\v([^_]|^)\zs_\ze([^_]|$)" containedin=ALL
+    autocmd FileType markdown hi markdownError ctermbg=NONE ctermfg=NONE
+augroup END
 
 " Set riv.vim settings
 let g:riv_fuzzy_help = 0
