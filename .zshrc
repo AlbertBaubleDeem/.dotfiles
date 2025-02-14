@@ -50,16 +50,13 @@ PROMPT=$'%F{%(#.blue.green)}┌──(%f%B%F{%(#.red.blue)}%n%f%b@%B%F{%(#.red.b
 # export PATH = /usr/local/Cellar/git/2.37.1/bin/git:$PATH
 
 # Syntax highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Fzf keybinds for macOS - obsolete. Key binding are stored in a .fzf.zsh file
 # if [[ "$OSTYPE" == "darwin"* ]]; then
 # . /usr/local/Cellar/fzf/0.33.0/shell/key-bindings.zsh
 # fi
 export PATH="/usr/local/sbin:$PATH"
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
 
 # Rclone autocomplete
 source ~/Coding/rclone/rclone_autocomplete
