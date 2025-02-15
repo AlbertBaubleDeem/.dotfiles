@@ -49,6 +49,10 @@ PROMPT=$'%F{%(#.blue.green)}┌──(%f%B%F{%(#.red.blue)}%n%f%b@%B%F{%(#.red.b
 # My personal PATH
 # export PATH = /usr/local/Cellar/git/2.37.1/bin/git:$PATH
 
+# Brew path - before brew installed commands
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
+
 # Syntax highlighting
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
 
@@ -65,6 +69,3 @@ source ~/Coding/rclone/rclone_autocomplete
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 
-# Brew path
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
