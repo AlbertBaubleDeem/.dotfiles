@@ -1,4 +1,4 @@
-# Change bindkeys to vim
+# Change bindkeys to vim bindkey -v
 bindkey -v
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -50,18 +50,21 @@ PROMPT=$'%F{%(#.blue.green)}┌──(%f%B%F{%(#.red.blue)}%n%f%b@%B%F{%(#.red.b
 # export PATH = /usr/local/Cellar/git/2.37.1/bin/git:$PATH
 
 # Syntax highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
 
-# Fzf keybinds for macOS - obsolete. Key binding are stored in a .fzf.zsh file
+# Fzf keybinds for macOS
+source <(fzf --zsh)
 # if [[ "$OSTYPE" == "darwin"* ]]; then
 # . /usr/local/Cellar/fzf/0.33.0/shell/key-bindings.zsh
 # fi
-export PATH="/usr/local/sbin:$PATH"
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)
+export PATH="/usr/local/sbin:$PATH"
 
 # Rclone autocomplete
 source ~/Coding/rclone/rclone_autocomplete
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+
+# Brew path
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
