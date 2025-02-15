@@ -52,10 +52,9 @@ PROMPT=$'%F{%(#.blue.green)}┌──(%f%B%F{%(#.red.blue)}%n%f%b@%B%F{%(#.red.b
 # Syntax highlighting
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Fzf keybinds for macOS - obsolete. Key binding are stored in a .fzf.zsh file
-# if [[ "$OSTYPE" == "darwin"* ]]; then
-# . /usr/local/Cellar/fzf/0.33.0/shell/key-bindings.zsh
-# fi
+# Fzf keybinds for macOS
+source <(fzf --zsh)
+
 export PATH="/usr/local/sbin:$PATH"
 
 # Rclone autocomplete
