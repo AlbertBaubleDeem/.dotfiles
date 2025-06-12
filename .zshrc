@@ -12,6 +12,8 @@ alias llh='ls -lAht --color=auto | head -n 10'
 alias grep='grep --color=auto'
 alias ec="$EDITOR $HOME/.zshrc" # edit .zshrc
 alias sc="source $HOME/.zshrc"  # reload zsh configuration
+alias ping='sudo ping' #WSL specific alias since successful ping requires sudo privileges
+alias q='exit' #Cursor.sh specific alias to exit the shell
 
 # Change bindkeys to Vim
 bindkey -v
@@ -20,6 +22,11 @@ bindkey -v
 
 setopt prompt_subst
 
+# SSH Agent Management
+# Start SSH agent if not running
+if [ -z "$SSH_AUTH_SOCK" ]; then
+   eval "$(ssh-agent -s)" > /dev/null
+fi
 
 # Keep 5000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=5000
@@ -68,3 +75,4 @@ eval "$(fasd --init auto)"
 fpath=(/usr/share/rubygems-integration/all/gems/vagrant-2.2.14/contrib/zsh $fpath)
 compinit
 # <<<<  Vagrant command completion (end)
+export PATH="$HOME/.local/bin:$PATH"
