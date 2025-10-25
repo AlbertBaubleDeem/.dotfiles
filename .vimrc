@@ -15,8 +15,8 @@ set nocompatible
 " Set highlight search
 set hlsearch
 
-" Set colorscheme to avoid unreadable WSL colors - Windows specific
-colorscheme lunaperche
+" Unset colorscheme to avoid unreadable WSL colors - Windows specific
+" colorscheme lunaperche
 set background=dark
 hi Normal guibg=NONE ctermbg=NONE
 

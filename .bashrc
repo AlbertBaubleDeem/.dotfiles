@@ -2,6 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# Start cursor tunnel to allow remoting via github tunnel into WSL
+#~/cursor tunnel
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -115,3 +118,16 @@ fi
 # fzf key bindings for bash sourced from examples
 . /usr/share/doc/fzf/examples/key-bindings.bash
 
+# ssh-agent script for non systemd enabled Windows -> WSL specific
+export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
+
+ss -a | grep -q $SSH_AUTH_SOCK
+if [ $? -ne 0 ]; then
+    rm -f $SSH_AUTH_SOCK
+    npiperelaypath=$(wslpath "C:\Users\radvana\AppData\Local\Microsoft\Winget\Packages\albertony.npiperelay_Microsoft.Winget.Source_8wekyb3d8bbwe")
+    (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"$npiperelaypath/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
