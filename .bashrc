@@ -118,14 +118,13 @@ fi
 # fzf key bindings for bash sourced from examples
 . /usr/share/doc/fzf/examples/key-bindings.bash
 
-# ssh-agent script for non systemd enabled Windows -> WSL specific
-export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
+# SSH agent via npiperelay - bridges to Windows OpenSSH agent (WSL specific)
+export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
 
-ss -a | grep -q $SSH_AUTH_SOCK
-if [ $? -ne 0 ]; then
-    rm -f $SSH_AUTH_SOCK
-    npiperelaypath=$(wslpath "C:\Users\radvana\AppData\Local\Microsoft\Winget\Packages\albertony.npiperelay_Microsoft.Winget.Source_8wekyb3d8bbwe")
-    (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"$npiperelaypath/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
+if ! ssh-add -l &>/dev/null; then
+    rm -f "$SSH_AUTH_SOCK"
+    (setsid socat UNIX-LISTEN:"$SSH_AUTH_SOCK",fork \
+        EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
 fi
 
 export NVM_DIR="$HOME/.nvm"

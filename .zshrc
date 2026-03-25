@@ -22,10 +22,13 @@ bindkey -v
 
 setopt prompt_subst
 
-# SSH Agent Management
-# Start SSH agent if not running
-if [ -z "$SSH_AUTH_SOCK" ]; then
-   eval "$(ssh-agent -s)" > /dev/null
+# SSH agent via npiperelay - bridges to Windows OpenSSH agent (WSL specific)
+export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
+
+if ! ssh-add -l &>/dev/null; then
+    rm -f "$SSH_AUTH_SOCK"
+    (setsid socat UNIX-LISTEN:"$SSH_AUTH_SOCK",fork \
+        EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
 fi
 
 # Keep 5000 lines of history within the shell and save it to ~/.zsh_history:
@@ -76,3 +79,9 @@ fpath=(/usr/share/rubygems-integration/all/gems/vagrant-2.2.14/contrib/zsh $fpat
 compinit
 # <<<<  Vagrant command completion (end)
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"

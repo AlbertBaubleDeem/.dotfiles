@@ -120,7 +120,12 @@ Plug 'rykka/riv.vim'
 "vim csv viewer plugin
 Plug 'chrisbra/csv.vim'
 
+"vim-markdown plugin for better markdown navigation
+Plug 'preservim/vim-markdown'
+
 call plug#end()
+
+let g:vim_markdown_folding_disabled = 1
 
 " Turn on syntax highlighting.
 syntax on
@@ -128,7 +133,7 @@ syntax on
 " Adjust underscore handling in Markdown
 augroup markdown_underscore_fix
     autocmd!
-    autocmd FileType markdown syn clear markdownError
+    autocmd FileType markdown silent! syn clear markdownError
     autocmd FileType markdown syn match markdownError "\v([^_]|^)\zs_\ze([^_]|$)" containedin=ALL
     autocmd FileType markdown hi markdownError ctermbg=NONE ctermfg=NONE
 augroup END
