@@ -11,8 +11,13 @@
 " `vim -u foo`).
 set nocompatible
 
-" Turn on syntax highlighting.
-syntax on
+" Adjust underscore handling in Markdown
+augroup markdown_underscore_fix
+    autocmd!
+    autocmd FileType markdown syn clear markdownError
+    autocmd FileType markdown syn match markdownError "\v([^_]|^)\zs_\ze([^_]|$)" containedin=ALL
+    autocmd FileType markdown hi markdownError ctermbg=NONE ctermfg=NONE
+augroup END
 
 " Disable the default Vim startup message.
 set shortmess+=I
@@ -79,6 +84,9 @@ inoremap <Right> <ESC>:echoe "Use l"<CR>
 inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
+" Custom command to remove HTML tags
+command! RemoveHtmlTags %s/<[^>]*>//g
+
 " PLUGINS
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 
@@ -99,7 +107,13 @@ nmap cW cE
 "description: rst note taking
 Plug 'rykka/riv.vim'
 
+"vim csv viewer plugin
+Plug 'chrisbra/csv.vim'
+
 call plug#end()
+
+" Turn on syntax highlighting.
+syntax on
 
 " Set riv.vim settings
 let g:riv_fuzzy_help = 0
