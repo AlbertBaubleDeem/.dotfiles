@@ -4,6 +4,9 @@
 # Set path if required
 #export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH
 
+# Pick up PATH and env vars from .profile
+[ -f "$HOME/.profile" ] && source "$HOME/.profile"
+
 # Aliases
 alias ls='ls --color=auto'
 alias la='ls -A --color=auto'
