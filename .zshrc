@@ -43,8 +43,8 @@ zstyle ':vcs_info:git:*' check-for-staged-changes true
 
 RPROMPT='%(?.. %? %B%F{red}⨯%f%b)%(1j. %j %B%F{yellow}⚙%f%b.)${vcs_info_msg_0_}'
 
-# Fixing PROMPT start on a new line
-PROMPT=$'%F{%(#.blue.green)}┌──(%f%B%F{%(#.red.blue)}%n%f%b@%B%F{%(#.red.blue)}%m%f%b%F{%(#.blue.green)})─[%f%B%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}]\n└─%f%(#.%F{red}#.%F{blue}$)%f '
+# Per-machine ricing theme
+[ -r ~/.config/ricing.zsh ] && source ~/.config/ricing.zsh
 
 # My personal PATH
 # export PATH = /usr/local/Cellar/git/2.37.1/bin/git:$PATH
